@@ -1,0 +1,27 @@
+
+.PlantelHeader {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    background-color: rgba(7, 10, 100, 0.442);
+}
+
+.PlantelContent {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(8, 26, 116, 0.403);
+}
+
+.PlantelFooter {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(100, 7, 7, 0.442);
+}
