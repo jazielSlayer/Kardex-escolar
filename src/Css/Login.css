@@ -14,6 +14,7 @@
 
 .formulario h1 {
     text-align: center;
+    color: rgb(126, 99, 148);
     padding: 0 0 20px 0;
     border-bottom: 1px solid #e0e0e0;
 }
@@ -57,14 +58,14 @@ form .username {
     left: 0;
     width: 0%;
     height: 2px;
-    background: #ff7e5f;
+    background: rgb(126, 99, 148);
     transition: .5s;
 }
 
 .username input:focus ~ label,
 .username input:valid ~ label {
     top: -5px;
-    color: #ff7e5f;
+    color: rgb(126, 99, 148);
     font-size: 12px;
 }
 
@@ -79,7 +80,7 @@ input[type="submit"] {
     width: 100%;
     height: 50px;
     border: 1px solid;
-    background: #ff7e5f;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 25px;
     font-size: 18px;
     color: white;
@@ -89,6 +90,6 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    border-color: #ff7e5f;
+    border-color: rgb(126, 99, 148);
     transition: .5s;
 }
