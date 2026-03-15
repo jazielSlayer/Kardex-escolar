@@ -98,10 +98,51 @@ function RegistrarEstudiante() {
   const [resultado, setResultado]     = useState(null);   // datos del servidor
 
   /* ── Setters genéricos ── */
-  const setE  = (k) => (e) => setEstudiante (p => ({ ...p, [k]: e.target.value }));
-  const setI  = (k) => (e) => setInscripcion(p => ({ ...p, [k]: e.target.value }));
-  const setT1 = (k) => (e) => setTutor1     (p => ({ ...p, [k]: e.target.value }));
-  const setT2 = (k) => (e) => setTutor2     (p => ({ ...p, [k]: e.target.value }));
+  const setE  = (k) => (e) => {
+    const value = e.target.value;
+    setEstudiante(p => ({ ...p, [k]: value }));
+    if (value) setErrores(prev => {
+      if (!prev[k]) return prev;
+      const next = { ...prev };
+      delete next[k];
+      return next;
+    });
+  };
+
+  const setI  = (k) => (e) => {
+    const value = e.target.value;
+    setInscripcion(p => ({ ...p, [k]: value }));
+    if (value) setErrores(prev => {
+      if (!prev[k]) return prev;
+      const next = { ...prev };
+      delete next[k];
+      return next;
+    });
+  };
+
+  const setT1 = (k) => (e) => {
+    const value = e.target.value;
+    setTutor1(p => ({ ...p, [k]: value }));
+    const errKey = `t1_${k}`;
+    if (value) setErrores(prev => {
+      if (!prev[errKey]) return prev;
+      const next = { ...prev };
+      delete next[errKey];
+      return next;
+    });
+  };
+
+  const setT2 = (k) => (e) => {
+    const value = e.target.value;
+    setTutor2(p => ({ ...p, [k]: value }));
+    const errKey = `t2_${k}`;
+    if (value) setErrores(prev => {
+      if (!prev[errKey]) return prev;
+      const next = { ...prev };
+      delete next[errKey];
+      return next;
+    });
+  };
 
   /* ── Validaciones por paso ── */
   const validar = () => {
@@ -228,21 +269,9 @@ function RegistrarEstudiante() {
     <div className="contenedor">
       <ImportarNav />
 
-      {/* Header */}
-      <div className="re-header">
-        <div className="re-header-icon">🎓</div>
-        <div>
-          <h1>Registro de Estudiante</h1>
-          <p>Complete todos los pasos para inscribir al nuevo estudiante</p>
-        </div>
-      </div>
-
-      {/* Barra de progreso */}
       {paso < 6 && (
         <>
-          <div className="re-progress-bar">
-            <div className="re-progress-fill" style={{ width: `${progreso}%` }} />
-          </div>
+          
 
           {/* Stepper */}
           <div className="re-stepper">
@@ -753,9 +782,11 @@ function RegistrarEstudiante() {
         {/* ── Navegación ── */}
         {paso < 6 && (
           <div className="re-nav">
-            <button className="re-btn re-btn-outline" onClick={anterior} disabled={paso === 0}>
-              ← Anterior
-            </button>
+            {paso > 0 && (
+              <button className="re-btn re-btn-outline" onClick={anterior}>
+                ← Anterior
+              </button>
+            )}
 
             {paso < 5 && (
               <button className="re-btn re-btn-primary" onClick={siguiente}>

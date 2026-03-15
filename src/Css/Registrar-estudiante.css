@@ -1,159 +1,223 @@
-/* ─────────────────────────────────────────────
-   Registrar-estudiante.css
-   Paleta: azul marino institucional + blanco + acentos teal
-   ───────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap');
-
+/* ── Variables ─────────────────────────────────────────────────── */
 :root {
-  --azul:       #1a2b4a;
-  --azul-med:   #2c4a7c;
-  --teal:       #0d8a8a;
-  --teal-light: #e0f5f5;
-  --error:      #c0392b;
-  --success:    #27ae60;
-  --gris-1:     #f4f6fa;
-  --gris-2:     #e8ecf2;
-  --gris-3:     #b0bac8;
-  --texto:      #1a2b4a;
-  --blanco:     #ffffff;
-  --sombra:     0 4px 24px rgba(26, 43, 74, 0.10);
-  --radio:      10px;
-  --trans:      all 0.22s cubic-bezier(.4,0,.2,1);
+  --bg:          #02021e;
+  --card:        #040738b6;
+  --card-2:      #050848cc;
+  --border:      #1a1f6b55;
+  --border-2:    #2d33a8aa;
+
+  --navy:        #0a0e52;
+  --navy-mid:    #131880;
+  --navy-light:  #1e25a0;
+
+  --accent:      #4a90d9;
+  --accent-light:#7ab3e8;
+  --accent-glow: rgba(74,144,217,.18);
+
+  --gold:        #c8a84b;
+  --gold-light:  #e2c97e;
+
+  --gradient:    linear-gradient(135deg, #131880 0%, #0d4fa8 100%);
+  --gradient-soft: linear-gradient(135deg, rgba(19,24,128,.25) 0%, rgba(13,79,168,.18) 100%);
+
+  --text:        #e8edf8;
+  --text-strong: #f4f6fc;
+  --muted:       #8a9bc4;
+  --muted-2:     #4e5d8a;
+
+  --input-bg:    rgba(2, 4, 40, 0.85);
+  --input-border:#1e266e;
+  --input-focus: #3a5fc4;
+
+  --success:     #2db88a;
+  --error:       #e06060;
+  --error-bg:    rgba(224,96,96,.08);
+
+  --radius:      14px;
+  --radius-sm:   8px;
+  --shadow:      0 4px 32px rgba(2,3,30,.8);
+  --shadow-card: 0 2px 24px rgba(4,7,56,.45);
+  --trans:       all 0.22s cubic-bezier(.4,0,.2,1);
 }
 
-/* ── Reset básico ── */
+/* ── Reset básico ────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── Contenedor principal ── */
+/* ── Wrapper principal ───────────────────────────────────────── */
 .re-wrapper {
   min-height: 100vh;
-  background: var(--gris-1);
+  background: var(--bg);
   font-family: 'DM Sans', sans-serif;
-  color: var(--texto);
-  padding-bottom: 60px;
+  color: var(--text);
+  padding-bottom: 72px;
+  background-image:
+    radial-gradient(ellipse 70% 40% at 15% 0%, rgba(19,24,128,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 85% 100%, rgba(13,79,168,.1) 0%, transparent 60%);
 }
 
+/* ── Header ──────────────────────────────────────────────────── */
 .re-header {
-  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-med) 100%);
+  background: linear-gradient(135deg, #02021e 0%, #060936 100%);
+  border-bottom: 1px solid var(--border);
   padding: 28px 40px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 }
 
 .re-header-icon {
-  width: 46px; height: 46px;
-  background: rgba(255,255,255,0.15);
+  width: 48px; height: 48px;
+  background: var(--gradient);
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   font-size: 22px;
+  box-shadow: 0 4px 16px var(--accent-glow);
 }
 
 .re-header h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Serif Display', serif;
   font-size: 1.6rem;
-  color: var(--blanco);
-  font-weight: 600;
+  color: var(--text-strong);
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 .re-header p {
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.65);
-  margin-top: 2px;
+  color: var(--muted);
+  margin-top: 3px;
 }
 
-/* ── Stepper ── */
+/* ── Barra de progreso ──────────────────────────────────────── */
+.re-progress-bar {
+  height: 2px;
+  background: rgba(2,4,40,.8);
+  overflow: hidden;
+}
+
+.re-progress-fill {
+  height: 100%;
+  background: var(--gradient);
+  transition: width 0.45s ease;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* ── Stepper: etiquetas arriba, línea abajo ──────────────────── */
 .re-stepper {
-  background: var(--blanco);
-  border-bottom: 1px solid var(--gris-2);
-  padding: 0 40px;
+  padding: 20px 24px 0;
   display: flex;
+  justify-content: center;
+  align-items: flex-end;
   gap: 0;
   overflow-x: auto;
   scrollbar-width: none;
+  flex-wrap: wrap;
+  row-gap: 0;
 }
 .re-stepper::-webkit-scrollbar { display: none; }
 
 .re-step {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 18px 20px;
+  gap: 6px;
+  padding: 6px 4px 0;
   cursor: pointer;
-  border-bottom: 3px solid transparent;
-  transition: var(--trans);
+  opacity: 0.35;
+  transition: opacity 0.3s;
   white-space: nowrap;
-  color: var(--gris-3);
-  font-size: 0.85rem;
-  font-weight: 500;
+  position: relative;
 }
 
-.re-step.activo {
-  border-bottom-color: var(--teal);
-  color: var(--teal);
+/* ── Línea conectora DEBAJO del texto ─────────────────────── */
+.re-step:not(:last-child)::after {
+  content: '';
+  display: block;
+  width: calc(100% - 8px);
+  height: 2px;
+  background: rgba(255,255,255,.1);
+  border-radius: 2px;
+  margin-top: 6px;
+  transition: background 0.3s;
 }
 
-.re-step.completado {
-  color: var(--azul-med);
-  border-bottom-color: var(--azul-med);
+.re-step.completado::after {
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-glow);
 }
+
+.re-step.activo::after {
+  background: rgba(74,144,217,.35);
+}
+
+.re-step.activo,
+.re-step.completado { opacity: 1; }
 
 .re-step-num {
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  background: var(--gris-2);
-  color: var(--gris-3);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.78rem;
-  font-weight: 700;
-  transition: var(--trans);
+  display: none;
 }
 
-.re-step.activo .re-step-num {
-  background: var(--teal);
-  color: var(--blanco);
+.re-step > span:last-child {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted-2);
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
 }
 
-.re-step.completado .re-step-num {
-  background: var(--azul-med);
-  color: var(--blanco);
-}
+.re-step.activo > span:last-child  { color: var(--accent-light); }
+.re-step.completado > span:last-child { color: var(--accent); }
 
-/* ── Contenido del paso ── */
+/* ── Contenido ───────────────────────────────────────────────── */
 .re-content {
   max-width: 900px;
   margin: 32px auto;
   padding: 0 20px;
 }
 
+/* ── Card con fondo navy formal ──────────────────────────────── */
 .re-card {
-  background: var(--blanco);
-  border-radius: var(--radio);
-  box-shadow: var(--sombra);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
   padding: 32px;
   margin-bottom: 20px;
+  animation: reFade .35s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
+@keyframes reFade {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Títulos de sección ──────────────────────────────────────── */
 .re-card-title {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--azul);
-  margin-bottom: 6px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text-strong);
+  margin-bottom: 4px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  letter-spacing: 0.01em;
 }
 
-.re-card-title span { font-size: 1.1rem; }
+.re-card-title span { font-size: 1.15rem; }
 
 .re-card-sub {
   font-size: 0.82rem;
-  color: var(--gris-3);
+  color: var(--muted);
   margin-bottom: 24px;
+  letter-spacing: 0.02em;
 }
 
-/* ── Grid de campos ── */
+/* ── Grids ───────────────────────────────────────────────────── */
 .re-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -163,13 +227,7 @@
 .re-grid-2 { grid-template-columns: 1fr 1fr; }
 .re-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
 
-@media (max-width: 640px) {
-  .re-grid-2, .re-grid-3 { grid-template-columns: 1fr; }
-  .re-header { padding: 20px; }
-  .re-card { padding: 20px; }
-}
-
-/* ── Campo ── */
+/* ── Campo ───────────────────────────────────────────────────── */
 .re-campo {
   display: flex;
   flex-direction: column;
@@ -177,250 +235,314 @@
 }
 
 .re-campo label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--azul);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.07em;
 }
 
-.re-campo label .req { color: var(--error); margin-left: 2px; }
+.re-campo label .req { color: var(--gold-light); margin-left: 2px; }
 
-.re-campo input,
+.re-campo input:not([type="checkbox"]),
 .re-campo select,
 .re-campo textarea {
   width: 100%;
   padding: 10px 14px;
-  border: 1.5px solid var(--gris-2);
-  border-radius: 8px;
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-sm);
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  color: var(--texto);
-  background: var(--gris-1);
+  font-size: 0.88rem;
+  color: var(--text);
+  background: var(--input-bg);
   transition: var(--trans);
   outline: none;
   appearance: none;
+  letter-spacing: 0.01em;
 }
 
-.re-campo input:focus,
+.re-campo input::placeholder,
+.re-campo textarea::placeholder {
+  color: var(--muted-2);
+  font-style: italic;
+}
+
+.re-campo input:not([type="checkbox"]):focus,
 .re-campo select:focus,
 .re-campo textarea:focus {
-  border-color: var(--teal);
-  background: var(--blanco);
-  box-shadow: 0 0 0 3px rgba(13,138,138,0.12);
+  border-color: var(--input-focus);
+  background: rgba(3, 6, 58, 0.95);
+  color: var(--text-strong);
+  box-shadow: 0 0 0 3px rgba(58,95,196,.2);
 }
 
-.re-campo input.error,
+.re-campo input:not([type="checkbox"]).error,
 .re-campo select.error {
   border-color: var(--error);
-  background: #fff5f5;
+  background: var(--error-bg);
 }
 
 .re-campo .error-msg {
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   color: var(--error);
+  letter-spacing: 0.02em;
 }
 
-.re-campo textarea { resize: vertical; min-height: 80px; }
+.re-campo textarea {
+  resize: vertical;
+  min-height: 80px;
+}
 
-/* ── Divider ── */
+/* ── Select arrow ────────────────────────────────────────────── */
+.re-campo select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a90d9' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+/* ── Divider ─────────────────────────────────────────────────── */
 .re-divider {
   height: 1px;
-  background: var(--gris-2);
+  background: var(--border);
   margin: 24px 0;
 }
 
-/* ── Toggle tutor 2 ── */
+/* ── Toggle tutor 2 ──────────────────────────────────────────── */
 .re-toggle {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  background: var(--teal-light);
-  border-radius: 8px;
-  border: 1.5px dashed var(--teal);
+  gap: 14px;
+  padding: 15px 20px;
+  background: var(--gradient-soft);
+  border: 1.5px dashed var(--border-2);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   margin-bottom: 20px;
   transition: var(--trans);
 }
 
-.re-toggle:hover { background: #c5eded; }
+.re-toggle:hover {
+  border-color: var(--accent);
+  background: rgba(74,144,217,.1);
+}
 
 .re-toggle input[type="checkbox"] {
   width: 18px; height: 18px;
-  accent-color: var(--teal);
+  accent-color: var(--accent);
   cursor: pointer;
 }
 
 .re-toggle label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--teal);
+  color: var(--accent-light);
   cursor: pointer;
+  letter-spacing: 0.02em;
 }
 
-/* ── Navegación de pasos ── */
+/* ── Navegación de pasos ─────────────────────────────────────── */
 .re-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 8px;
+  gap: .75rem;
 }
 
+/* ── Botones ─────────────────────────────────────────────────── */
 .re-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 11px 24px;
-  border-radius: 8px;
+  padding: .8rem 1.7rem;
+  border-radius: var(--radius-sm);
   font-family: 'DM Sans', sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   border: none;
   transition: var(--trans);
+  letter-spacing: 0.03em;
 }
 
+/* Volver */
 .re-btn-outline {
-  background: var(--blanco);
-  border: 1.5px solid var(--gris-2);
-  color: var(--azul);
+  background: transparent;
+  border: 1.5px solid var(--border-2);
+  color: var(--muted);
 }
-.re-btn-outline:hover { border-color: var(--azul-med); background: var(--gris-1); }
+.re-btn-outline:hover:not(:disabled) {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+  background: rgba(74,144,217,.06);
+}
+.re-btn-outline:disabled { opacity: .35; cursor: not-allowed; }
 
+/* Siguiente */
 .re-btn-primary {
-  background: var(--teal);
-  color: var(--blanco);
+  background: linear-gradient(135deg, #0e1585 0%, #0d4aa0 100%);
+  color: var(--text-strong);
+  border: 1px solid rgba(74,144,217,.25);
+  box-shadow: 0 4px 16px rgba(13,74,160,.35);
 }
-.re-btn-primary:hover { background: #0a7070; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,138,138,0.3); }
-.re-btn-primary:disabled { background: var(--gris-3); cursor: not-allowed; transform: none; box-shadow: none; }
+.re-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1220a8 0%, #1260c8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(13,74,160,.5);
+}
+.re-btn-primary:disabled { opacity: .45; cursor: not-allowed; transform: none; }
 
+/* Confirmar */
 .re-btn-success {
-  background: var(--success);
-  color: var(--blanco);
+  background: linear-gradient(135deg, #0b5c3d 0%, #0d7a52 100%);
+  color: #b8f5e0;
+  border: 1px solid rgba(45,184,138,.25);
+  box-shadow: 0 4px 16px rgba(11,92,61,.4);
 }
-.re-btn-success:hover { background: #219a52; transform: translateY(-1px); }
-
-/* ── Progreso ── */
-.re-progress-bar {
-  height: 3px;
-  background: var(--gris-2);
-  border-radius: 2px;
-  margin: 0 40px;
-  overflow: hidden;
+.re-btn-success:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0e7a50 0%, #11a06c 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(11,92,61,.55);
 }
+.re-btn-success:disabled { opacity: .45; cursor: not-allowed; }
 
-.re-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--teal), var(--azul-med));
-  border-radius: 2px;
-  transition: width 0.4s ease;
-}
-
-/* ── Alerta ── */
+/* ── Alerta ──────────────────────────────────────────────────── */
 .re-alerta {
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
   font-size: 0.88rem;
   margin-bottom: 18px;
   display: flex;
   align-items: flex-start;
   gap: 10px;
+  animation: reFade .3s ease;
 }
 
 .re-alerta-error {
-  background: #fdf0ef;
+  background: var(--error-bg);
   border-left: 4px solid var(--error);
   color: var(--error);
 }
 
 .re-alerta-success {
-  background: #edfaf3;
+  background: rgba(45,184,138,.08);
   border-left: 4px solid var(--success);
-  color: #1e7e45;
+  color: var(--success);
 }
 
-/* ── Resumen final ── */
+/* ── Resumen final ───────────────────────────────────────────── */
 .re-resumen {
-  background: var(--azul);
-  color: var(--blanco);
-  border-radius: var(--radio);
+  background: linear-gradient(135deg, #04063a 0%, #050b3e 100%);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius);
   padding: 28px 32px;
   margin-bottom: 20px;
+  box-shadow: 0 4px 28px rgba(4,7,56,.5);
 }
 
 .re-resumen h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
-  margin-bottom: 18px;
-  opacity: 0.9;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+  letter-spacing: 0.03em;
 }
 
 .re-resumen-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  gap: 18px;
 }
 
 .re-resumen-item label {
-  font-size: 0.72rem;
-  opacity: 0.6;
+  font-size: 0.68rem;
+  color: var(--muted-2);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.09em;
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
+  font-weight: 700;
 }
 
 .re-resumen-item span {
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   font-weight: 500;
+  color: var(--text-strong);
 }
 
-/* ── Spinner ── */
+/* ── Spinner ─────────────────────────────────────────────────── */
 .re-spinner {
   width: 18px; height: 18px;
-  border: 2px solid rgba(255,255,255,0.4);
+  border: 2px solid rgba(255,255,255,.2);
   border-top-color: #fff;
   border-radius: 50%;
-  animation: spin 0.7s linear infinite;
+  animation: reSpin .7s linear infinite;
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes reSpin { to { transform: rotate(360deg); } }
 
-/* ── Success state ── */
+/* ── Pantalla de éxito ───────────────────────────────────────── */
 .re-success-box {
   text-align: center;
-  padding: 48px 32px;
+  padding: 52px 32px;
 }
 
 .re-success-icon {
   font-size: 3.5rem;
-  margin-bottom: 16px;
-  animation: popIn 0.5s cubic-bezier(.17,.67,.35,1.3);
+  margin-bottom: 18px;
+  animation: rePopIn .55s cubic-bezier(.17,.67,.35,1.35);
 }
 
-@keyframes popIn {
+@keyframes rePopIn {
   from { transform: scale(0); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
 }
 
 .re-success-box h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  color: var(--azul);
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: var(--text-strong);
   margin-bottom: 8px;
 }
 
-.re-success-box p { color: var(--gris-3); margin-bottom: 6px; }
+.re-success-box p {
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+}
 
 .re-codigo {
   display: inline-block;
-  background: var(--teal-light);
-  color: var(--teal);
+  background: linear-gradient(135deg, rgba(19,24,128,.4) 0%, rgba(13,79,168,.3) 100%);
+  border: 1px solid var(--border-2);
+  color: var(--gold-light);
   font-weight: 700;
-  font-size: 1.1rem;
-  padding: 8px 20px;
-  border-radius: 6px;
-  margin: 12px 0 24px;
-  letter-spacing: 0.06em;
+  font-size: 1.15rem;
+  padding: 10px 28px;
+  border-radius: var(--radius-sm);
+  margin: 14px 0 26px;
+  letter-spacing: 0.1em;
+}
+
+/* ── Checkbox estilizado ─────────────────────────────────────── */
+.re-campo input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .re-card { padding: 20px 16px; }
+  .re-grid-2, .re-grid-3 { grid-template-columns: 1fr; }
+  .re-header { padding: 20px; }
+  .re-resumen { padding: 20px; }
+  .re-nav { flex-direction: column-reverse; }
+  .re-btn { width: 100%; justify-content: center; }
+  .re-stepper { padding: 0 12px; }
+  .re-step { padding: 14px 12px 0; font-size: 0.78rem; }
 }
