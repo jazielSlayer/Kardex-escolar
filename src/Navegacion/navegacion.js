@@ -27,7 +27,7 @@ function Navegacion({ isOpen, onToggle }) {
             </div>
             <div className="right">
                 {/* Registrar estudiante */}
-                <Link to="/registrar/nuevo/estudiante" className="pestañas icons-header">
+                <Link to="/registrar/estudiante" className="pestañas icons-header">
                     <IconEdit alt="Registrar-estudiante" />
                 </Link>
                 {/* Lista de estudiantes */}
@@ -81,7 +81,7 @@ function Navegacion({ isOpen, onToggle }) {
                     </li>
                     <li>
                         {/* Registrar nuevo estudiante */}
-                        <Link to="/registrar/estudiante/nuevo" className="a">
+                        <Link to="/registrar/estudiante/" className="a">
                             <IconEdit alt="agregar" className="img" />
                             <span>Registrar estudiante</span>
                         </Link>

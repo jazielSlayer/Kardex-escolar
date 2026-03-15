@@ -7,6 +7,7 @@ import PlantelPantalla from "./Plantel_Pantalla";
 import EstudiantePantalla from "./Estudiante_Pantalla";
 import DocentesPantalla from "./Docentes_Pantalla";
 import Admin from "./Admin/Admin"
+import RegistrarEstudiante from "./Admin/Registrar-estudiante";
 
 createRoot(document.getElementById("root")).render(
     <React.StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById("root")).render(
                 <Route path="/estudiante" element={<EstudiantePantalla />} />
                 <Route path="/docentes" element={<DocentesPantalla />} />
                 <Route path="/admin" element={<Admin />}/>
+                <Route path="/registrar/estudiante" element={<RegistrarEstudiante />}/>
                 
             </Routes>
         </BrowserRouter>  

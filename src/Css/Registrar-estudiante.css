@@ -1,0 +1,426 @@
+/* ─────────────────────────────────────────────
+   Registrar-estudiante.css
+   Paleta: azul marino institucional + blanco + acentos teal
+   ───────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap');
+
+:root {
+  --azul:       #1a2b4a;
+  --azul-med:   #2c4a7c;
+  --teal:       #0d8a8a;
+  --teal-light: #e0f5f5;
+  --error:      #c0392b;
+  --success:    #27ae60;
+  --gris-1:     #f4f6fa;
+  --gris-2:     #e8ecf2;
+  --gris-3:     #b0bac8;
+  --texto:      #1a2b4a;
+  --blanco:     #ffffff;
+  --sombra:     0 4px 24px rgba(26, 43, 74, 0.10);
+  --radio:      10px;
+  --trans:      all 0.22s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Reset básico ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Contenedor principal ── */
+.re-wrapper {
+  min-height: 100vh;
+  background: var(--gris-1);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--texto);
+  padding-bottom: 60px;
+}
+
+.re-header {
+  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-med) 100%);
+  padding: 28px 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.re-header-icon {
+  width: 46px; height: 46px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+
+.re-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+.re-header p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.65);
+  margin-top: 2px;
+}
+
+/* ── Stepper ── */
+.re-stepper {
+  background: var(--blanco);
+  border-bottom: 1px solid var(--gris-2);
+  padding: 0 40px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.re-stepper::-webkit-scrollbar { display: none; }
+
+.re-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 20px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: var(--trans);
+  white-space: nowrap;
+  color: var(--gris-3);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.re-step.activo {
+  border-bottom-color: var(--teal);
+  color: var(--teal);
+}
+
+.re-step.completado {
+  color: var(--azul-med);
+  border-bottom-color: var(--azul-med);
+}
+
+.re-step-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--gris-2);
+  color: var(--gris-3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: var(--trans);
+}
+
+.re-step.activo .re-step-num {
+  background: var(--teal);
+  color: var(--blanco);
+}
+
+.re-step.completado .re-step-num {
+  background: var(--azul-med);
+  color: var(--blanco);
+}
+
+/* ── Contenido del paso ── */
+.re-content {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+.re-card {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 32px;
+  margin-bottom: 20px;
+}
+
+.re-card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--azul);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.re-card-title span { font-size: 1.1rem; }
+
+.re-card-sub {
+  font-size: 0.82rem;
+  color: var(--gris-3);
+  margin-bottom: 24px;
+}
+
+/* ── Grid de campos ── */
+.re-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.re-grid-2 { grid-template-columns: 1fr 1fr; }
+.re-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+@media (max-width: 640px) {
+  .re-grid-2, .re-grid-3 { grid-template-columns: 1fr; }
+  .re-header { padding: 20px; }
+  .re-card { padding: 20px; }
+}
+
+/* ── Campo ── */
+.re-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.re-campo label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--azul);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.re-campo label .req { color: var(--error); margin-left: 2px; }
+
+.re-campo input,
+.re-campo select,
+.re-campo textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--gris-2);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--texto);
+  background: var(--gris-1);
+  transition: var(--trans);
+  outline: none;
+  appearance: none;
+}
+
+.re-campo input:focus,
+.re-campo select:focus,
+.re-campo textarea:focus {
+  border-color: var(--teal);
+  background: var(--blanco);
+  box-shadow: 0 0 0 3px rgba(13,138,138,0.12);
+}
+
+.re-campo input.error,
+.re-campo select.error {
+  border-color: var(--error);
+  background: #fff5f5;
+}
+
+.re-campo .error-msg {
+  font-size: 0.75rem;
+  color: var(--error);
+}
+
+.re-campo textarea { resize: vertical; min-height: 80px; }
+
+/* ── Divider ── */
+.re-divider {
+  height: 1px;
+  background: var(--gris-2);
+  margin: 24px 0;
+}
+
+/* ── Toggle tutor 2 ── */
+.re-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--teal-light);
+  border-radius: 8px;
+  border: 1.5px dashed var(--teal);
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: var(--trans);
+}
+
+.re-toggle:hover { background: #c5eded; }
+
+.re-toggle input[type="checkbox"] {
+  width: 18px; height: 18px;
+  accent-color: var(--teal);
+  cursor: pointer;
+}
+
+.re-toggle label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--teal);
+  cursor: pointer;
+}
+
+/* ── Navegación de pasos ── */
+.re-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.re-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: var(--trans);
+}
+
+.re-btn-outline {
+  background: var(--blanco);
+  border: 1.5px solid var(--gris-2);
+  color: var(--azul);
+}
+.re-btn-outline:hover { border-color: var(--azul-med); background: var(--gris-1); }
+
+.re-btn-primary {
+  background: var(--teal);
+  color: var(--blanco);
+}
+.re-btn-primary:hover { background: #0a7070; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,138,138,0.3); }
+.re-btn-primary:disabled { background: var(--gris-3); cursor: not-allowed; transform: none; box-shadow: none; }
+
+.re-btn-success {
+  background: var(--success);
+  color: var(--blanco);
+}
+.re-btn-success:hover { background: #219a52; transform: translateY(-1px); }
+
+/* ── Progreso ── */
+.re-progress-bar {
+  height: 3px;
+  background: var(--gris-2);
+  border-radius: 2px;
+  margin: 0 40px;
+  overflow: hidden;
+}
+
+.re-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--azul-med));
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* ── Alerta ── */
+.re-alerta {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.re-alerta-error {
+  background: #fdf0ef;
+  border-left: 4px solid var(--error);
+  color: var(--error);
+}
+
+.re-alerta-success {
+  background: #edfaf3;
+  border-left: 4px solid var(--success);
+  color: #1e7e45;
+}
+
+/* ── Resumen final ── */
+.re-resumen {
+  background: var(--azul);
+  color: var(--blanco);
+  border-radius: var(--radio);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+}
+
+.re-resumen h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  margin-bottom: 18px;
+  opacity: 0.9;
+}
+
+.re-resumen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.re-resumen-item label {
+  font-size: 0.72rem;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.re-resumen-item span {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ── Spinner ── */
+.re-spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Success state ── */
+.re-success-box {
+  text-align: center;
+  padding: 48px 32px;
+}
+
+.re-success-icon {
+  font-size: 3.5rem;
+  margin-bottom: 16px;
+  animation: popIn 0.5s cubic-bezier(.17,.67,.35,1.3);
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.re-success-box h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--azul);
+  margin-bottom: 8px;
+}
+
+.re-success-box p { color: var(--gris-3); margin-bottom: 6px; }
+
+.re-codigo {
+  display: inline-block;
+  background: var(--teal-light);
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 8px 20px;
+  border-radius: 6px;
+  margin: 12px 0 24px;
+  letter-spacing: 0.06em;
+}
