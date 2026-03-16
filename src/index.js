@@ -8,6 +8,8 @@ import EstudiantePantalla from "./Estudiante_Pantalla";
 import DocentesPantalla from "./Docentes_Pantalla";
 import Admin from "./Admin/Admin"
 import RegistrarEstudiante from "./Admin/Registrar-estudiante";
+import Anotacion from "./Admin/Registrar-Anotacion";
+
 
 createRoot(document.getElementById("root")).render(
     <React.StrictMode>
@@ -19,6 +21,7 @@ createRoot(document.getElementById("root")).render(
                 <Route path="/docentes" element={<DocentesPantalla />} />
                 <Route path="/admin" element={<Admin />}/>
                 <Route path="/registrar/estudiante" element={<RegistrarEstudiante />}/>
+                <Route path="/registrar/anotacion" element={<Anotacion />}/>
                 
             </Routes>
         </BrowserRouter>  
