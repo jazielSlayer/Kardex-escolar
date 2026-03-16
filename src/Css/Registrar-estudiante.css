@@ -206,6 +206,7 @@
   align-items: center;
   gap: 10px;
   letter-spacing: 0.01em;
+  margin-bottom: 25px;
 }
 
 .re-card-title span { font-size: 1.15rem; }

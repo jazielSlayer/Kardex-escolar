@@ -54,14 +54,7 @@ const GRADOS = [
   { id: 15, nombre: "6to de Secundaria A" },
 ];
 
-const PASOS = [
-  { label: "Personal",  icon: "👤" },
-  { label: "Médico",    icon: "🏥" },
-  { label: "Matrícula", icon: "📋" },
-  { label: "Tutor 1",   icon: "👨‍👩‍👧" },
-  { label: "Tutor 2",   icon: "➕" },
-  { label: "Resumen",   icon: "✅" },
-];
+
 
 /* ── Helpers ── */
 const Campo = ({ label, req, error, children }) => (
@@ -262,32 +255,14 @@ function RegistrarEstudiante() {
     setPaso(0);
   };
 
-  const progreso = Math.round((paso / (PASOS.length - 1)) * 100);
+  
 
   /* ══ RENDER ══════════════════════════════════════════════ */
   return (
     <div className="contenedor">
       <ImportarNav />
 
-      {paso < 6 && (
-        <>
-          
-
-          {/* Stepper */}
-          <div className="re-stepper">
-            {PASOS.map((p, i) => (
-              <div key={i}
-                className={`re-step ${i === paso ? "activo" : i < paso ? "completado" : ""}`}
-                onClick={() => i < paso && setPaso(i)}>
-                <div className="re-step-num">
-                  {i < paso ? "✓" : i + 1}
-                </div>
-                <span>{p.icon} {p.label}</span>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
+      
 
       <div className="re-content">
 
@@ -298,12 +273,11 @@ function RegistrarEstudiante() {
           </div>
         )}
 
-        {/* ════ PASO 0: Datos personales ════ */}
+       
         {paso === 0 && (
           <div className="re-card">
-            <div className="re-card-title"><span>👤</span> Datos Personales del Estudiante</div>
-            <p className="re-card-sub">Información de identificación del estudiante</p>
-
+            <div className="re-card-title"> Datos Personales del Estudiante</div>
+            
             <div className="re-grid re-grid-2">
               <Campo label="Nombre" req error={errores.nombre}>
                 <Input value={estudiante.nombre} onChange={setE("nombre")}
@@ -356,8 +330,8 @@ function RegistrarEstudiante() {
             </Campo>
 
             <div className="re-divider" />
-            <div className="re-card-title"><span>🔐</span> Credenciales de Acceso</div>
-            <p className="re-card-sub">El estudiante usará estos datos para iniciar sesión</p>
+            <div className="re-card-title"> Credenciales de Acceso</div>
+            
 
             <div className="re-grid re-grid-2">
               <Campo label="Correo institucional" req error={errores.correo}>
@@ -377,8 +351,8 @@ function RegistrarEstudiante() {
         {/* ════ PASO 1: Datos médicos ════ */}
         {paso === 1 && (
           <div className="re-card">
-            <div className="re-card-title"><span>🏥</span> Información Médica</div>
-            <p className="re-card-sub">Datos de salud y situación familiar del estudiante</p>
+            <div className="re-card-title"> Información Médica</div>
+            
 
             <div className="re-grid re-grid-3">
               <Campo label="Tipo de sangre">
@@ -439,11 +413,11 @@ function RegistrarEstudiante() {
           </div>
         )}
 
-        {/* ════ PASO 2: Inscripción / Matrícula ════ */}
+        
         {paso === 2 && (
           <div className="re-card">
-            <div className="re-card-title"><span>📋</span> Datos de Inscripción</div>
-            <p className="re-card-sub">Información académica y de matrícula para el año 2026</p>
+            <div className="re-card-title"> Datos de Inscripción</div>
+            
 
             <div className="re-grid re-grid-2">
               <Campo label="Grado" req error={errores.id_grado}>
@@ -513,8 +487,8 @@ function RegistrarEstudiante() {
         {/* ════ PASO 3: Tutor 1 ════ */}
         {paso === 3 && (
           <div className="re-card">
-            <div className="re-card-title"><span>👨‍👩‍👧</span> Tutor Principal (Obligatorio)</div>
-            <p className="re-card-sub">Datos del padre, madre o tutor legal principal</p>
+            <div className="re-card-title"> Tutor Principal (Obligatorio)</div>
+            
 
             <div className="re-grid re-grid-2">
               <Campo label="Nombre" req error={errores.t1_nombre}>
@@ -584,7 +558,7 @@ function RegistrarEstudiante() {
             </div>
 
             <div className="re-divider" />
-            <div className="re-card-title"><span>🔐</span> Acceso del Tutor</div>
+            <div className="re-card-title"> Acceso del Tutor</div>
             <div className="re-grid re-grid-2">
               <Campo label="Correo" req error={errores.t1_correo}>
                 <Input type="email" value={tutor1.correo} onChange={setT1("correo")}
@@ -597,7 +571,7 @@ function RegistrarEstudiante() {
             </div>
 
             <div className="re-divider" />
-            <div className="re-card-title"><span>🔗</span> Relación con el estudiante</div>
+            <div className="re-card-title"> Relación con el estudiante</div>
             <div className="re-grid re-grid-2" style={{ marginTop: 14 }}>
               {[
                 ["es_responsable_economico", "Responsable económico"],
@@ -629,9 +603,8 @@ function RegistrarEstudiante() {
 
             {conTutor2 && (
               <div className="re-card">
-                <div className="re-card-title"><span>➕</span> Tutor Secundario (Opcional)</div>
-                <p className="re-card-sub">Datos del segundo padre, madre o tutor</p>
-
+                <div className="re-card-title"> Tutor Secundario (Opcional)</div>
+                
                 <div className="re-grid re-grid-2">
                   <Campo label="Nombre" req error={errores.t2_nombre}>
                     <Input value={tutor2.nombre} onChange={setT2("nombre")}
@@ -675,7 +648,7 @@ function RegistrarEstudiante() {
                 </div>
 
                 <div className="re-divider" />
-                <div className="re-card-title"><span>🔐</span> Acceso del Tutor 2</div>
+                <div className="re-card-title"> Acceso del Tutor 2</div>
                 <div className="re-grid re-grid-2">
                   <Campo label="Correo" req error={errores.t2_correo}>
                     <Input type="email" value={tutor2.correo} onChange={setT2("correo")}
@@ -711,11 +684,11 @@ function RegistrarEstudiante() {
           </>
         )}
 
-        {/* ════ PASO 5: Resumen ════ */}
+        
         {paso === 5 && (
           <>
             <div className="re-resumen">
-              <h2>📋 Resumen de Inscripción</h2>
+              <h2> Resumen de Inscripción</h2>
               <div className="re-resumen-grid">
                 <div className="re-resumen-item">
                   <label>Nombre completo</label>
@@ -773,7 +746,7 @@ function RegistrarEstudiante() {
             </p>
             <div style={{ marginTop: 28, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <button className="re-btn re-btn-primary" onClick={reiniciar}>
-                ➕ Registrar otro estudiante
+                Registrar otro estudiante
               </button>
             </div>
           </div>
@@ -795,10 +768,10 @@ function RegistrarEstudiante() {
             )}
 
             {paso === 5 && (
-              <button className="re-btn re-btn-success" onClick={enviar} disabled={loading}>
+              <button className="re-btn re-btn-primary" onClick={enviar} disabled={loading}>
                 {loading
                   ? <><div className="re-spinner" /> Registrando...</>
-                  : "✅ Confirmar inscripción"}
+                  : " Confirmar inscripción"}
               </button>
             )}
           </div>
