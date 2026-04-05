@@ -1,0 +1,168 @@
+.Page {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.formulario {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: white;
+    border-radius: 10px;
+    padding-bottom: 10px;
+}
+
+.formulario h1 {
+    text-align: center;
+    color: rgb(126, 99, 148);
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 0;
+}
+
+.formulario form {
+    box-sizing: border-box;
+    padding: 0 40px;
+}
+
+/* ── Bienvenida ─────────────────────────────────────────────── */
+.bienvenida {
+    margin: 20px 0 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.bienvenida p {
+    margin: 4px 0;
+}
+
+.bienvenida strong {
+    color: rgb(126, 99, 148);
+}
+
+/* ── Campos ─────────────────────────────────────────────────── */
+form .username {
+    position: relative;
+    border-bottom: 2px solid #e0e0e0;
+    margin: 30px 0;
+}
+
+.username input,
+.username select {
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.username label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #999;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+/* Label siempre arriba para select y placeholder */
+.username .label-activo,
+.username input:focus ~ label,
+.username input:valid ~ label {
+    top: -5px;
+    color: rgb(126, 99, 148);
+    font-size: 12px;
+}
+
+.username span::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: rgb(126, 99, 148);
+    transition: .5s;
+}
+
+.username input:focus ~ span::before {
+    width: 100%;
+}
+
+/* ── Select método ──────────────────────────────────────────── */
+.select-metodo {
+    color: #333;
+    cursor: pointer;
+    appearance: none;
+    padding-top: 10px;
+}
+
+/* ── Botón submit ───────────────────────────────────────────── */
+input[type="submit"] {
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 25px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 12px;
+    transition: opacity .3s;
+}
+
+input[type="submit"]:hover {
+    border-color: rgb(126, 99, 148);
+    opacity: 0.9;
+}
+
+input[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ── Botón volver ───────────────────────────────────────────── */
+.btn-volver {
+    width: 100%;
+    height: 40px;
+    background: none;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 14px;
+    color: rgb(126, 99, 148);
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 20px;
+    transition: border-color .3s, background .3s;
+}
+
+.btn-volver:hover {
+    border-color: rgb(126, 99, 148);
+    background: #f9f5ff;
+}
+
+.btn-volver:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ── Error ──────────────────────────────────────────────────── */
+.error {
+    color: #e53e3e;
+    font-size: 13px;
+    text-align: center;
+    margin: -10px 0 10px;
+    padding: 8px 12px;
+    background: #fff5f5;
+    border-radius: 6px;
+    border: 1px solid #fed7d7;
+}
