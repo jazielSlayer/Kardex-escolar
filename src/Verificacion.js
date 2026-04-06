@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Css/Login.css";
+import "./Css/Verificacion.css";
 import {
   generarCodigo2FAService,
   verificarCodigo2FAService,
@@ -110,11 +110,11 @@ function Verificacion() {
         {/* ── PASO 1: Elegir método ── */}
         {paso === "metodo" && (
           <>
-            <h1>Verificación en dos pasos</h1>
+            <h1>Verificación</h1>
             <form onSubmit={handleEnviarCodigo}>
 
               <div className="bienvenida">
-                <p>Hola, <strong>{sesion.nombre_completo}</strong></p>
+                
                 <p>Elige cómo recibir tu código de seguridad:</p>
               </div>
 
@@ -171,7 +171,7 @@ function Verificacion() {
                   maxLength={6}
                   value={codigo}
                   onChange={(e) => setCodigo(e.target.value.replace(/\D/g, ""))}
-                  placeholder="000000"
+                  
                   disabled={cargando}
                   autoComplete="one-time-code"
                 />
