@@ -2,6 +2,9 @@ import React from "react";
 import { createRoot} from "react-dom/client";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
+import { AuthProvider } from "./Authcontext";
+import RutaProtegida   from "./RutaProtegida";
+
 import LoginPantalla from "./Login";
 import Verificacion from "./Verificacion";
 
@@ -15,19 +18,44 @@ import Anotacion from "./Admin/Registrar-Anotacion";
 
 createRoot(document.getElementById("root")).render(
     <React.StrictMode>
+        <AuthProvider>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<LoginPantalla />} />
                 <Route path="/verificacion" element={<Verificacion />} />
 
-                <Route path="/plantel" element={<PlantelPantalla />} />
-                <Route path="/estudiante" element={<EstudiantePantalla />} />
-                <Route path="/docentes" element={<DocentesPantalla />} />
-                <Route path="/admin" element={<Admin />}/>
-                <Route path="/registrar/estudiante" element={<RegistrarEstudiante />}/>
-                <Route path="/registrar/anotacion" element={<Anotacion />}/>
-                
+                <Route path="/plantel" element={
+                    <RutaProtegida roles={["Admin"]}>
+                     <PlantelPantalla />
+                    </RutaProtegida>
+                } />
+                <Route path="/estudiante" element={
+                    <RutaProtegida roles={["Estudiante"]}>
+                        <EstudiantePantalla />
+                    </RutaProtegida>
+                } />
+                <Route path="/docentes" element={
+                    <RutaProtegida roles={[ "Docente"]}>
+                        <DocentesPantalla />
+                    </RutaProtegida>
+                } />
+                <Route path="/admin" element={
+                    <RutaProtegida roles={["Admin"]}>
+                        <Admin />
+                    </RutaProtegida>
+                } />
+                <Route path="/registrar/estudiante" element={
+                    <RutaProtegida roles={["Admin"]}>
+                        <RegistrarEstudiante />
+                    </RutaProtegida>
+                } />
+                <Route path="/registrar/anotacion" element={
+                    <RutaProtegida roles={["Admin"]}>
+                        <Anotacion />
+                    </RutaProtegida>
+                } />
             </Routes>
-        </BrowserRouter>  
+        </BrowserRouter>
+        </AuthProvider>  
     </React.StrictMode>
 );

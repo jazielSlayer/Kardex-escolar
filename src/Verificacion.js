@@ -5,10 +5,12 @@ import {
   generarCodigo2FAService,
   verificarCodigo2FAService,
 } from "./Api/Api-Admin/Login";
+import { useAuth } from "./Authcontext"; // agregar
 
 function Verificacion() {
   const navigate = useNavigate();
 
+  const { guardarSesion } = useAuth();
   const [paso, setPaso]                 = useState("metodo");
   const [metodo, setMetodo]             = useState("Email");
   const [codigo, setCodigo]             = useState("");
@@ -76,8 +78,8 @@ function Verificacion() {
 
       // Verificación exitosa
       sessionStorage.removeItem("sesion_2fa");
-      localStorage.setItem("usuario", JSON.stringify(sesion));
-      navigate("/dashboard");
+      guardarSesion(sesion);
+      navigate("/admin");
 
     } catch (err) {
       setError("No se pudo verificar el código. Intente nuevamente.");

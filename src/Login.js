@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Css/Login.css";
 import { loginService } from "./Api/Api-Admin/Login";
+import { useAuth } from "./Authcontext"; // agregar
 
 function LoginPantalla() {
   const navigate = useNavigate();
 
+   const { guardarSesion } = useAuth();
   const [correo, setCorreo]     = useState("");
   const [password, setPassword] = useState("");
   const [error, setError]       = useState(null);
@@ -26,7 +28,7 @@ function LoginPantalla() {
 
       // Sin 2FA: Estudiante o Padre → dashboard directo
       if (!res.requiere_2fa) {
-        localStorage.setItem("usuario", JSON.stringify(res.data));
+         guardarSesion(res.data);
         navigate("/dashboard");
         return;
       }
